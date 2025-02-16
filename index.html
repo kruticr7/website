@@ -3,59 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мой первый сайт</title>
+    <title>С 8 марта!</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
+            background-color: #ffebee; /* Розовый фон */
+            color: #d32f2f; /* Красный текст */
             margin: 0;
             padding: 0;
-            text-align: center;
+            overflow: hidden; /* Чтобы сердечки не выходили за пределы экрана */
+            position: relative;
         }
+
         header {
-            background-color: #4CAF50;
+            background-color: #f48fb1; /* Светло-розовый */
             color: white;
             padding: 20px 0;
+            text-align: center;
         }
+
         h1 {
             margin: 0;
+            font-size: 3rem;
+            animation: bounce 2s infinite; /* Анимация для текста */
         }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
         .content {
             padding: 20px;
+            text-align: center;
         }
+
         footer {
-            background-color: #333;
+            background-color: #d32f2f; /* Красный */
             color: white;
             padding: 10px 0;
             position: fixed;
             bottom: 0;
             width: 100%;
+            text-align: center;
         }
-        a {
-            color: #4CAF50;
-            text-decoration: none;
+
+        /* Анимация падающих сердечек */
+        .heart {
+            position: absolute;
+            top: -50px;
+            animation: fall linear infinite;
+            font-size: 2rem;
+            color: #d32f2f; /* Красные сердечки */
         }
-        a:hover {
-            text-decoration: underline;
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Добро пожаловать на мой сайт!</h1>
+        <h1>С 8 марта!</h1>
     </header>
     <div class="content">
-        <h2>Обо мне</h2>
-        <p>Привет! Меня зовут [Ваше имя], и это мой первый сайт.</p>
-        <p>Я учусь создавать сайты и хочу поделиться своими успехами.</p>
-        <h2>Мои проекты</h2>
-        <p>Здесь будут мои будущие проекты. Следите за обновлениями!</p>
-        <h2>Связь со мной</h2>
-        <p>Вы можете связаться со мной через <a href="mailto:ваш.email@example.com">email</a>.</p>
+        <p>Пусть этот день принесет вам радость, тепло и улыбки!</p>
     </div>
     <footer>
-        <p>&copy; 2025 Мой первый сайт. Все права защищены.</p>
+        <p>&copy; 2025 С любовью и сердечками ❤️</p>
     </footer>
+
+    <!-- Скрипт для создания падающих сердечек -->
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's'; // Случайная скорость падения
+            document.body.appendChild(heart);
+
+            // Удаляем сердечко после завершения анимации
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        // Создаем сердечки каждые 300 мс
+        setInterval(createHeart, 300);
+    </script>
 </body>
 </html>
