@@ -26,6 +26,8 @@
             animation: bounce 2s infinite; /* Анимация для текста */
             text-align: center;
             display: none; /* Сначала скрываем надпись */
+            z-index: 2; /* Текст поверх сердечек */
+            position: relative;
         }
 
         @keyframes bounce {
@@ -41,6 +43,8 @@
             text-align: center;
             margin-top: 20px;
             display: none; /* Сначала скрываем текст */
+            z-index: 2; /* Текст поверх сердечек */
+            position: relative;
         }
 
         footer {
@@ -55,6 +59,7 @@
             justify-content: space-between;
             align-items: center;
             display: none; /* Сначала скрываем футер */
+            z-index: 2; /* Футер поверх сердечек */
         }
 
         .footer-text {
@@ -81,8 +86,9 @@
             position: absolute;
             top: -50px;
             animation: fall 5s linear infinite; /* Одинаковая скорость для всех */
-            font-size: 2rem;
+            font-size: 1.5rem; /* Уменьшенный размер сердечек */
             color: #d32f2f; /* Красные сердечки */
+            z-index: 1; /* Сердечки под текстом */
         }
 
         @keyframes fall {
@@ -104,6 +110,7 @@
             background-color: #ffebee; /* Розовый фон */
             font-size: 2rem;
             color: #d32f2f; /* Красный текст */
+            z-index: 3; /* Начальный экран поверх всего */
         }
     </style>
 </head>
@@ -117,7 +124,7 @@
         <p>Пусть этот день принесет вам радость, тепло и улыбки!</p>
     </div>
     <footer>
-        <p class="footer-text">&copy; 2025 Сайт защищён авторским правом.</p>
+        <p class="footer-text">&copy; 2025 Защищено авторским правом.</p>
         <button class="contact-button" onclick="window.location.href='mailto:g621vwb@gmail.com'">Связь с автором</button>
     </footer>
 
@@ -131,7 +138,7 @@
 
             // Равномерное распределение по горизонтали
             const screenWidth = window.innerWidth;
-            const heartSize = 32; // Размер сердечка (примерно 2rem)
+            const heartSize = 24; // Уменьшенный размер сердечка (примерно 1.5rem)
             const maxHeartsPerRow = Math.floor(screenWidth / heartSize); // Максимум сердечек в строке
             const heartIndex = Math.floor(Math.random() * maxHeartsPerRow) * heartSize; // Позиция по X
 
@@ -155,7 +162,7 @@
             document.querySelector('footer').style.display = 'flex';
 
             // Запускаем создание сердечек
-            setInterval(createHeart, 100); // Сердечки создаются каждые 100 мс
+            setInterval(createHeart, 150); // Сердечки создаются каждые 150 мс
         }
 
         // Обработчик клика для запуска анимации
