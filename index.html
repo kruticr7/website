@@ -18,12 +18,14 @@
             justify-content: center;
             align-items: center;
             height: 100vh; /* Высота на весь экран */
+            cursor: pointer; /* Курсор в виде указателя */
         }
 
         h1 {
             font-size: 4rem;
             animation: bounce 2s infinite; /* Анимация для текста */
             text-align: center;
+            display: none; /* Сначала скрываем надпись */
         }
 
         @keyframes bounce {
@@ -38,6 +40,7 @@
         .content {
             text-align: center;
             margin-top: 20px;
+            display: none; /* Сначала скрываем текст */
         }
 
         footer {
@@ -51,6 +54,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            display: none; /* Сначала скрываем футер */
         }
 
         .footer-text {
@@ -76,7 +80,7 @@
         .heart {
             position: absolute;
             top: -50px;
-            animation: fall linear infinite;
+            animation: fall 5s linear infinite; /* Одинаковая скорость для всех */
             font-size: 2rem;
             color: #d32f2f; /* Красные сердечки */
         }
@@ -86,9 +90,28 @@
                 transform: translateY(100vh);
             }
         }
+
+        /* Стиль для начального экрана */
+        .start-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffebee; /* Розовый фон */
+            font-size: 2rem;
+            color: #d32f2f; /* Красный текст */
+        }
     </style>
 </head>
 <body>
+    <!-- Начальный экран -->
+    <div class="start-screen">Нажмите в любую точку, чтобы начать</div>
+
+    <!-- Основной контент -->
     <h1>С 8 марта!</h1>
     <div class="content">
         <p>Пусть этот день принесет вам радость, тепло и улыбки!</p>
@@ -100,22 +123,43 @@
 
     <!-- Скрипт для создания падающих сердечек -->
     <script>
+        // Функция для создания сердечек
         function createHeart() {
             const heart = document.createElement('div');
             heart.innerHTML = '❤️';
             heart.classList.add('heart');
-            heart.style.left = Math.random() * window.innerWidth + 'px';
-            heart.style.animationDuration = Math.random() * 3 + 2 + 's'; // Случайная скорость падения
+
+            // Равномерное распределение по горизонтали
+            const screenWidth = window.innerWidth;
+            const heartSize = 32; // Размер сердечка (примерно 2rem)
+            const maxHeartsPerRow = Math.floor(screenWidth / heartSize); // Максимум сердечек в строке
+            const heartIndex = Math.floor(Math.random() * maxHeartsPerRow) * heartSize; // Позиция по X
+
+            heart.style.left = heartIndex + 'px'; // Устанавливаем позицию по X
             document.body.appendChild(heart);
 
             // Удаляем сердечко после завершения анимации
             setTimeout(() => {
                 heart.remove();
-            }, 5000);
+            }, 5000); // 5 секунд (длительность анимации)
         }
 
-        // Создаем сердечки каждые 300 мс
-        setInterval(createHeart, 300);
+        // Функция для запуска анимации
+        function startAnimation() {
+            // Убираем начальный экран
+            document.querySelector('.start-screen').style.display = 'none';
+
+            // Показываем основной контент
+            document.querySelector('h1').style.display = 'block';
+            document.querySelector('.content').style.display = 'block';
+            document.querySelector('footer').style.display = 'flex';
+
+            // Запускаем создание сердечек
+            setInterval(createHeart, 500);
+        }
+
+        // Обработчик клика для запуска анимации
+        document.body.addEventListener('click', startAnimation, { once: true });
     </script>
 </body>
 </html>
