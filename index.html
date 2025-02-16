@@ -13,19 +13,17 @@
             padding: 0;
             overflow: hidden; /* Чтобы сердечки не выходили за пределы экрана */
             position: relative;
-        }
-
-        header {
-            background-color: #f48fb1; /* Светло-розовый */
-            color: white;
-            padding: 20px 0;
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Высота на весь экран */
         }
 
         h1 {
-            margin: 0;
-            font-size: 3rem;
+            font-size: 4rem;
             animation: bounce 2s infinite; /* Анимация для текста */
+            text-align: center;
         }
 
         @keyframes bounce {
@@ -38,18 +36,40 @@
         }
 
         .content {
-            padding: 20px;
             text-align: center;
+            margin-top: 20px;
         }
 
         footer {
             background-color: #d32f2f; /* Красный */
             color: white;
-            padding: 10px 0;
+            padding: 10px 20px;
             position: fixed;
             bottom: 0;
             width: 100%;
             text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-text {
+            margin: 0;
+        }
+
+        .contact-button {
+            background-color: #ff4081; /* Розовая кнопка */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-button:hover {
+            background-color: #f50057; /* Темнее при наведении */
         }
 
         /* Анимация падающих сердечек */
@@ -69,14 +89,13 @@
     </style>
 </head>
 <body>
-    <header>
-        <h1>С 8 марта!</h1>
-    </header>
+    <h1>С 8 марта!</h1>
     <div class="content">
         <p>Пусть этот день принесет вам радость, тепло и улыбки!</p>
     </div>
     <footer>
-        <p>&copy; 2025 С любовью и сердечками ❤️</p>
+        <p class="footer-text">&copy; 2025 С любовью и сердечками ❤️</p>
+        <button class="contact-button" onclick="window.location.href='mailto:g621vwb@gmail.com'">Связь с автором</button>
     </footer>
 
     <!-- Скрипт для создания падающих сердечек -->
