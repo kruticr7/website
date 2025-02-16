@@ -47,6 +47,21 @@
             position: relative;
         }
 
+        .image-container {
+            margin-top: 20px;
+            display: none; /* Сначала скрываем картинку */
+            z-index: 2; /* Картинка поверх сердечек */
+            max-width: 90%; /* Чтобы картинка не выходила за пределы экрана */
+            max-height: 200px; /* Ограничение по высоте */
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px; /* Закругленные углы */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень */
+        }
+
         footer {
             background-color: #d32f2f; /* Красный */
             color: white;
@@ -123,8 +138,15 @@
     <div class="content">
         <p>Пусть этот день принесет вам радость, тепло и улыбки!</p>
     </div>
+
+    <!-- Контейнер для картинки -->
+    <div class="image-container">
+        <!-- Вставьте ссылку на картинку ниже -->
+        <img src="https://images.app.goo.gl/kKNdMfiVuubcdkFR9" alt="Праздничная картинка">
+    </div>
+
     <footer>
-        <p class="footer-text">&copy; 2025 Защищено авторским правом.</p>
+        <p class="footer-text">&copy; 2025 Сайт защищён авторским правом.</p>
         <button class="contact-button" onclick="window.location.href='mailto:g621vwb@gmail.com'">Связь с автором</button>
     </footer>
 
@@ -159,6 +181,7 @@
             // Показываем основной контент
             document.querySelector('h1').style.display = 'block';
             document.querySelector('.content').style.display = 'block';
+            document.querySelector('.image-container').style.display = 'block';
             document.querySelector('footer').style.display = 'flex';
 
             // Запускаем создание сердечек
