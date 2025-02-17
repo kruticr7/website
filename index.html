@@ -19,6 +19,13 @@
             align-items: center;
             height: 100vh; /* Высота на весь экран */
             cursor: pointer; /* Курсор в виде указателя */
+            animation: backgroundChange 10s infinite; /* Плавная смена фона */
+        }
+
+        @keyframes backgroundChange {
+            0% { background-color: #ffebee; }
+            50% { background-color: #ffccd5; }
+            100% { background-color: #ffebee; }
         }
 
         h1 {
@@ -31,12 +38,8 @@
         }
 
         @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         .content {
@@ -107,9 +110,7 @@
         }
 
         @keyframes fall {
-            to {
-                transform: translateY(100vh);
-            }
+            to { transform: translateY(100vh); }
         }
 
         /* Стиль для начального экрана */
@@ -175,6 +176,51 @@
             transition: transform 0.3s ease;
         }
 
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ff4081;
+            animation: confetti-fall 5s linear infinite;
+        }
+
+        @keyframes confetti-fall {
+            0% { transform: translateY(-10vh) rotate(0deg); }
+            100% { transform: translateY(110vh) rotate(360deg); }
+        }
+
+        .timer {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            display: none;
+            z-index: 1000;
+        }
+
+        .share-button {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ff4081;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            display: none;
+            z-index: 1000;
+        }
+
+        .share-button:hover {
+            background: #f50057;
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.5rem;
@@ -194,8 +240,7 @@
 
     <!-- Контейнер для картинки -->
     <div class="image-container">
-        <!-- Вставьте Base64-код картинки ниже -->
-        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAKgBKwMBIgACEQEDEQH/xAAcAAAABwEBAAAAAAAAAAAAAAAAAQIDBAUGBwj/xABQEAABAgMDBwcIBQkGBQUAAAABAgMABBEFEiEGEyIxQVFhMkJScYGR8AcUYnKhscHRFSOCkuEkM0NTY6KywvFzg5OU0vI0NUVU4iVEZITj/8QAGAEBAQEBAQAAAAAAAAAAAAAAAAECAwT/xAAhEQEBAAMAAgICAwAAAAAAAAAAAQIRIRIxQVEDIhMyQv/aAAwDAQACEQMRAD8A1Nk2U6tm17PVMOraTRvRpVJoopXXGtUqSKeiIgvWBZ1nebiZ+ln1pZaReYXQqKLwSqiSFalUNe2KF20ZxaJhb1pPpdccSrOJ0LwCSCDRWrk07YQlibmLn5bPuo6V409qqRi5T4bmKxt+79JSE/Z1nTGfZmXDMKcogLQsALCdMjYBh3w1k3NS0pYUtJ2jZc6ZpCEoecz4FSiqUFJvgjRNMANdIbbsYc9931c58okN2TJo/Q3vtfCG6cTfpCRVOZ3zWaUwloIQlU2q/W8oqxC60xTt2HhCjajSp52ZakvrHHC6u8+aagFahSlK1rqqTEVUihLC1tysw6hNLyZRhbijXAaKATWKS1ZphyzpTzdEy2JuZzLiZlvNqoipUmlSQDcINaHXHTDG5VjKyQ1a+UBLKJazk3JVBqhTqivGlAQTiRxPCMpO2jNr0lzTv2VUHsixnxfXFStN95I6Pwj3TCSajz+VohNTTJSpE3MIX0kun3ao6R5OMoZi0CuTnFBT6MUr3g7fnHNHU4xbZHTnmWUTCumbiur+sTLHhjerK1/KhlTJzs1I5izWHWHVtEollE4E9JVKHXWkUbnlHyudFDbS0H9nLsou9ya+2LLyw2eZLKdm0WUJzdoy4UTXW4jBXsuxglOKXHDGbdbV49ldlI+q87lDah4CbWj91JER1W3bDx0rVtJfrTbh+MVYMONHVG/GM7qc4u0lYOuTSr36x4q95hs59B0ytEJdnXXE5soRc1dcHLsKmApSFJ0TF0m0hh6avHzd14DpIWpPfTVFtLOZQpZDrE/P3f2U84D/ABRUOOOSgbQn83WpVvO6L+xZ5KVpR+jc5PCG9AhlLa60BmanXXbmoTAS4Un+8BMX1l5XupbDUyW5YpGDjSEpbPWDyD11HEQzOSMrOIo+2Qdixyh1ERQTtmvyBvpUHGjz06x1jZ2QswzmrwluLZzTH0nNZyblyp24AKzKEmnUlWrjEWayfklqSTIqdKeQUTBVTvpGZsufRJqAdkZWclqUVLPtpWQNubJBu+rqPCNvZslYFtSXnUjJMrbbwcS23cLJ3KSOTHDLG48rpMtqqYyWl30NpzBT9WBQZ3Rpv+sAPt64iLyNaLwVfmgquFxoqPUOVGmOT9k3knzKhSKJo6tPuUINdi2a4KXXjXChmnVU7Csgd0YaZuXyWs1hxQU6u8TpofcukjcU3QeyHvo6zpFa2itxQfTRQQbyaCuA0RTXFq5k1Ir5E1PNDc1Mn4iGDkupv/hrVnE8HXlr9yhC7OIzUlIheeZU4lw1SlSl0I2dHsw2YRGfsizmEpDSllxn6xsOO3qLGJHI8YbosXLAtRCNC0VL4LUqnuMMfRFuo/Stq/w/ikQ1fs3CJiyrNcn/ADlxS0vLqUEuXSRv5Or+kJRZVmtF0ecFAcbCVXnKJxPJxHDVth3zO304XEq43WfnDSpe3kHFpKuPmqT7EgkxdU4Jqx7CZRmmZxAC714B9OOquANNg+O6FN2PZuZmJVsKLWcN0KdRiChOJrtB1dUEpFsEUVLJx5vmT6a9yRCCxaSUJ/8ASmlDH9G4nD7SgYfscOLsKykNOS7bLxQa1TnkECtNldeANISxZEi1MTTLLEwlOaa5LgJJKlKoeGgmo4w1+UowVZcuk7RVxPtvQ2wtbTQzlnyzN7Emj41b9dYfscS28mZBJUoNTaL14FNBdIIpSlMcD7IYfyds1AmJl9M8hSWypZDJvKAGkVKu0JO2h3k6iYUp+UWDfal6kmv5Td2bCoYQ2lmXdBCZHzlJwus2pLU7dR98P2OFPWRJzEowiZM0FiWbS4hLN5ttd2pI0Sa1WrhiYByXsyug7P04Nf8A5xJEs860lLUjaaEjSGYnkKrw0TxhhVnTd4/kluf5h74GkN01GrZlWEchpN9POVie8w9T7/qw822p1eaaSpS+ilNTF5Z+TP6SeVdT+rT8TXxvjnIqil5Z2YXmpZpTqvRT4pF0LGYkWUOWo6m/zW0qNO2mJ7KRKtC3LPsaWzUilNOld7MN5jIv2kq0Jla1qdv3byU3hRRrQbI1IVcm20uBTDF1iX5KW26DDrG2MjlbZE0ptE7JK84Qw4l5I5zRFa1A1pIJFdlcd8NPuZqaaQjzj64m65d0K7Bw14RNZtCZl+X96Pdjjj/l57b8ue2pPTK5r8nTdbwUpKkiuyuPbD9lSrtpur8wl3X1XeS02VHE7QNUa+0pCzrTOdWi6f0iUp176bj4pG1ybfsaQk0SsiuVYQjmBQBrvNcSeJjGVuF3vaybjj9r2LaNlhH0lIPy+c/Nl1OCjrpUYV4a4qkOKlptlxHNUF90ekJ9izbds12zp1TTjLyaUvCqDsUNxBoQeEefbXs12QtR+ReFXJdakFSdRoeV2jHti4/k8uJcdN15RJMW35PW55rSes9SXdEa0clXZQ17I4sY7xkE81P2IuzZuimnmC2tKtqTokGOKWzZr9j2pNWbMij0q6W1GlLw2HqIoe2Ofqt/CGmHKXNKEy/Kr0YcVyiOkmNbTRAMSpJsuOKSF3VU0VJ2GIoComyl1DLgcvpUaFvRJ1dUW1Db7jwOZmF4jtpxBh+QfuKoNY0kwUwXZltACNJJhlKSylV9aEK2m8MYb4NU3bzLYCXdJVNbSq068NfVWJTVuyKxTOhPrJPwjGtFClBKFX1HUlGmT2CLWVse05gp82se0XQrfKuU76UEZ/VerGdlpWYq7Zz7AVzmg6CFcQNhiPZtoT9nTyJ6yZlUvOowvAVS6nalY1EROl8ibfmf+lOt+vm0j2rBizk/Jvb6iM87Z0snaFOqWR2BNPbG/Ka1epq+13ZOVchbyghloyFp0+vkzgkq2qbxxHDZ1RaZx31opW/JW1MOIdtO2XlLQQUmUlw0U09JSj7o2ctYdnsyzTAemnFpFM66v... (дальше base64 код обрезан для краткости)" alt="Праздничная картинка">
+        <img src="data:image/jpeg;base64,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... (дальше base64 код обрезан для краткости)" alt="Праздничная картинка">
     </div>
 
     <footer>
@@ -211,6 +256,9 @@
     <button id="musicButton" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">
         🎵 Включить музыку
     </button>
+
+    <div class="timer" id="timer">00:00:00</div>
+    <button class="share-button" id="shareButton">Поделиться праздником</button>
 
     <script>
         // Функция для создания сердечек
@@ -284,6 +332,36 @@
             document.getElementById('musicButton').style.display = 'none';
         });
 
+        // Таймер обратного отсчёта
+        const timerElement = document.getElementById('timer');
+        const endTime = new Date('2025-03-09T00:00:00').getTime();
+
+        function updateTimer() {
+            const now = new Date().getTime();
+            const timeLeft = endTime - now;
+
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            timerElement.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        }
+
+        setInterval(updateTimer, 1000);
+
+        // Кнопка "Поделиться"
+        document.getElementById('shareButton').addEventListener('click', () => {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'С 8 марта!',
+                    text: 'Пусть этот день принесет вам радость, тепло и улыбки!',
+                    url: window.location.href
+                });
+            } else {
+                alert('Ваш браузер не поддерживает функцию "Поделиться".');
+            }
+        });
+
         // Обновленный обработчик запуска
         function startAnimation() {
             document.querySelector('.start-screen').style.display = 'none';
@@ -291,6 +369,8 @@
             document.querySelector('.content').style.display = 'block';
             document.querySelector('.image-container').style.display = 'block';
             document.querySelector('footer').style.display = 'flex';
+            document.getElementById('timer').style.display = 'block';
+            document.getElementById('shareButton').style.display = 'block';
 
             setInterval(createHeart, 150);
             createSparkles();
