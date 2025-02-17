@@ -1,8 +1,133 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <!-- ... предыдущие метатеги и стили ... -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С 8 марта!</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffebee; /* Розовый фон */
+            color: #d32f2f; /* Красный текст */
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Чтобы сердечки не выходили за пределы экрана */
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Высота на весь экран */
+            cursor: pointer; /* Курсор в виде указателя */
+        }
+
+        h1 {
+            font-size: 4rem;
+            animation: bounce 2s infinite; /* Анимация для текста */
+            text-align: center;
+            display: none; /* Сначала скрываем надпись */
+            z-index: 2; /* Текст поверх сердечек */
+            position: relative;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .content {
+            text-align: center;
+            margin-top: 20px;
+            display: none; /* Сначала скрываем текст */
+            z-index: 2; /* Текст поверх сердечек */
+            position: relative;
+        }
+
+        .image-container {
+            margin-top: 20px;
+            display: none; /* Сначала скрываем картинку */
+            z-index: 2; /* Картинка поверх сердечек */
+            max-width: 90%; /* Чтобы картинка не выходила за пределы экрана */
+            max-height: 200px; /* Ограничение по высоте */
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px; /* Закругленные углы */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень */
+        }
+
+        footer {
+            background-color: #d32f2f; /* Красный */
+            color: white;
+            padding: 10px 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            display: none; /* Сначала скрываем футер */
+            z-index: 2; /* Футер поверх сердечек */
+        }
+
+        .footer-text {
+            margin: 0;
+        }
+
+        .contact-button {
+            background-color: #ff4081; /* Розовая кнопка */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-button:hover {
+            background-color: #f50057; /* Темнее при наведении */
+        }
+
+        /* Анимация падающих сердечек */
+        .heart {
+            position: absolute;
+            top: -50px;
+            animation: fall 5s linear infinite; /* Одинаковая скорость для всех */
+            font-size: 1.5rem; /* Уменьшенный размер сердечек */
+            color: #d32f2f; /* Красные сердечки */
+            z-index: 1; /* Сердечки под текстом */
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+
+        /* Стиль для начального экрана */
+        .start-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffebee; /* Розовый фон */
+            font-size: 2rem;
+            color: #d32f2f; /* Красный текст */
+            z-index: 3; /* Начальный экран поверх всего */
+        }
+
         /* Новые стили */
         .sparkle {
             position: absolute;
@@ -58,6 +183,26 @@
     </style>
 </head>
 <body>
+    <!-- Начальный экран -->
+    <div class="start-screen">Нажмите в любую точку, чтобы начать</div>
+
+    <!-- Основной контент -->
+    <h1 class="gradient-text">С 8 марта!</h1>
+    <div class="content">
+        <p>Пусть этот день принесет вам радость, тепло и улыбки!</p>
+    </div>
+
+    <!-- Контейнер для картинки -->
+    <div class="image-container">
+        <!-- Вставьте Base64-код картинки ниже -->
+        <img src="data:image/jpeg;base64,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... (дальше base64 код обрезан для краткости)" alt="Праздничная картинка">
+    </div>
+
+    <footer>
+        <p class="footer-text">© 2025 Сайт защищён авторским правом.</p>
+        <button class="contact-button" onclick="window.location.href='mailto:g621vwb@gmail.com'">Связь с автором</button>
+    </footer>
+
     <!-- Добавим новые элементы -->
     <div class="message-bubble" id="messageBubble">
         🌸 Вы прекрасны! С праздником! 🌸
@@ -67,10 +212,44 @@
         🎵 Включить музыку
     </button>
 
-    <!-- Остальной существующий код ... -->
-
     <script>
-        // Новые функции
+        // Функция для создания сердечек
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.classList.add('heart');
+            
+            // Разные цвета сердечек
+            const colors = ['#ff0066', '#ff3399', '#ff66cc', '#ff0099'];
+            heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+            
+            // Разные размеры
+            const sizes = ['1rem', '1.2rem', '0.8rem'];
+            heart.style.fontSize = sizes[Math.floor(Math.random() * sizes.length)];
+
+            // Равномерное распределение по горизонтали
+            const screenWidth = window.innerWidth;
+            const heartSize = 24; // Уменьшенный размер сердечка (примерно 1.5rem)
+            const maxHeartsPerRow = Math.floor(screenWidth / heartSize); // Максимум сердечек в строке
+            const heartIndex = Math.floor(Math.random() * maxHeartsPerRow) * heartSize; // Позиция по X
+
+            heart.style.left = heartIndex + 'px'; // Устанавливаем позицию по X
+            document.body.appendChild(heart);
+
+            // Удаляем сердечко после завершения анимации
+            setTimeout(() => {
+                heart.remove();
+            }, 5000); // 5 секунд (длительность анимации)
+
+            // Событие клика для увеличения сердечка
+            heart.onclick = () => {
+                heart.style.transform = 'scale(2) translateY(20px)';
+                heart.style.opacity = '0';
+                showRandomMessage();
+                setTimeout(() => heart.remove(), 500);
+            }
+        }
+
         function createSparkles() {
             setInterval(() => {
                 const sparkle = document.createElement('div');
@@ -97,37 +276,8 @@
             setTimeout(() => bubble.style.display = 'none', 3000);
         }
 
-        // Обновленная функция создания сердечек
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.innerHTML = '❤️';
-            heart.classList.add('heart');
-            
-            // Разные цвета сердечек
-            const colors = ['#ff0066', '#ff3399', '#ff66cc', '#ff0099'];
-            heart.style.color = colors[Math.floor(Math.random() * colors.length)];
-            
-            // Разные размеры
-            const sizes = ['1rem', '1.2rem', '0.8rem'];
-            heart.style.fontSize = sizes[Math.floor(Math.random() * sizes.length)];
-
-            // Позиционирование
-            heart.style.left = Math.random() * window.innerWidth + 'px';
-            
-            // Кликабельные сердечки
-            heart.onclick = () => {
-                heart.style.transform = 'scale(2) translateY(20px)';
-                heart.style.opacity = '0';
-                showRandomMessage();
-                setTimeout(() => heart.remove(), 500);
-            }
-
-            document.body.appendChild(heart);
-            setTimeout(() => heart.remove(), 5000);
-        }
-
         // Добавляем музыку
-        let audio = new Audio('data:audio/mp3;base64,//uQRAAAAWMSLwUIYAAsYkXgoQwAEaYLWfkWgAI0wWs/ItAAAGDgYtAgAyN+QWaAAihwMWm4G8QQRDiMcCBcH3Cc+CDv/7xA4Tvh9Rz/y8QADBwMWgQAZG/ILNAARQ4GLTcDeIIIhxGOBAuD7hOfBB3/94gcJ3w+o5/5eIAIAAAVwWgQAVQ2ORaIQwEMAJiDg95G4nQL7mQVWI6GwRcfsZAcsKkJvxgxEjzFUgfHoSQ9Qq7KNwqHwuB13MA4a1q/DmBrHgPcmjiGoh//EwC5nGPEmS4RcfkVKOhJf+WOgoxJclFz3kgn//dBA+ya1GhurNn8zb//9NNutNuhz31f////9vt///z+IdAEAAAK4LQIAKobHItEIYCGAExBwe8jcToF9zIKrEdDYIuP2MgOWFSE34wYiR5iqQPj0JIeoVdlG4VD4XA67mAcNa1fhzA1jwHuTRxDUQ//iYBczjHiTJcIuPyKlHQkv/LHQUYkuSi57yQT//uggfZNajQ3Vmz+Zt//+mm3Wm3Q576v////+32///5/EOgAAADVghQAAAAA//uQZAUAB1WI0PZugAAAAAoQwAAAEk3nRd2qAAAAACiDgAAAAAAABCqEEQRLCgwpBGMlJkIz8jKhGvj4k6jzRnqasNKIeoh5gI7BJaC1A1AoNBjJgbyApVS4IDlZgDU5WUAxEKDNmmALHzZp0Fkz1FMTmGFl1FMEyodIavcCAUHDWrKAIA4aa2oCgILEBupZgHvAhEBcZ6joQBxS76AgccrFlczBvKLC0QI2cBoCFvfTDAo7eoOQInqDPBtvrDEZBNYN5xwNwxQRfw8ZQ5wQVLvO8OYU+mHvFLlDh05Mdg7BT6YrRPpCBznMB2r//xKJjyyOh+cImr2/4doscwD6neZjuZR4AgAABYAAAABy1xcdQtxYBYYZdifkUDgzzXaXn98Z0oi9ILU5mBjFANmRwlVJ3/6jYDAmxaiDG3/6xjQQCCKkRb/6kg/wW+kSJ5//rLobkLSiKmqP/0ikJuDaSaSf/6JiLYLEYnW/+kXg1WRVJL/9EmQ1YZIsv/6Qzwy5qk7/+tEU0nkls3/zIUMPKNX/6yZLf+kFgAfgGyLFAUwY//uQZAUABcd5UiNPVXAAAApAAAAAE0VZQKw9ISAAACgAAAAAVQIygIElVrFkBS+Jhi+EAuu+lKAkYUEIsmEAEoMeDmCETMvfSHTGkF5RWH7kz/ESHWPAq/kcCRhqBtMdokPdM7vil7RG98A2sc7zO6ZvTdM7pmOUAZTnJW+NXxqmd41dqJ6mLTXxrPpnV8avaIf5SvL7pndPvPpndJR9Kuu8fePvuiuhorgWjp7Mf/PRjxcFCPDkW31srioCExivv9lcwKEaHsf/7ow2Fl1T/9RkXgEhYElAoCLFtMArxwivDJJ+bR1HTKJdlEoTELCIqgEwVGSQ+hIm0NbK8WXcTEI0UPoa2NbG4y2K00JEWbZavJXkYaqo9CRHS55FcZTjKEk3NKoCYUnSQ0rWxrZbFKbKIhOKPZe1cJKzZSaQrIyULHDZmV5K4xySsDRKWOruanGtjLJXFEmwaIbDLX0hIPBUQPVFVkQkDoUNfSoDgQGKPekoxeGzA4DUvnn4bxzcZrtJyipKfPNy5w+9lnXwgqsiyHNeSVpemw4bWb9psYeq//uQZBoABQt4yMVxYAIAAAkQoAAAHvYpL5m6AAgAACXDAAAAD59jblTirQe9upFsmZbpMudy7Lz1X1DYsxOOSWpfPqNX2WqktK0DMvuGwlbNj44TleLPQ+Gsfb+GOWOKJoIrWb3cIMeeON6lz2umTqMXV8Mj30yWPpjoSa9ujK8SyeJP5y5mOW1D6hvLepeveEAEDo0mgCRClOEgANv3B9a6fikgUSu/DmAMATrGx7nng5p5iimPNZsfQLYB2sDLIkzRKZOHGAaUyDcpFBSLG9MCQALgAIgQs2YunOszLSAyQYPVC2YdGGeHD2dTdJk1pAHGAWDjnkcLKFymS3RQZTInzySoBwMG0QueC3gMsCEYxUqlrcxK6k1LQQcsmyYeQPdC2YfuGPASCBkcVMQQqpVJshui1tkXQJQV0OXGAZMXSOEEBRirXbVRQW7ugq7IM7rPWSZyDlM3IuNEkxzCOJ0ny2ThNkyRai1b6ev//3dzNGzNb//4uAvHT5sURcZCFcuKLhOFs8mLAAEAt4UWAAIABAAAAAB4qbHo0tIjVkUU//uQZAwABfSFz3ZqQAAAAAngwAAAE1HjMp2qAAAAACZDgAAAD5UkTE1UgZEUExqYynN1qZvqIOREEFmBcJQkwdxiFtw0qEOkGYfRDifBui9MQg4QAHAqWtAWHoCxu1Yf4VfWLPIM2mHDFsbQEVGwyqQoQcwnfHeIkNt9YnkiaS1oizycqJrx4KOQjahZxWbcZgztj2c49nKmkId44S71j0c8eV9yDK6uPRzx5X18eDvjvQ6yKo9ZSS6l//8elePK/Lf//IInrOF/FvDoADYAGBMGb7FtErm5MXMlmPAJQVgWta7Zx2go+8xJ0UiCb8LHHdftWyLJE0QIAIsI+UbXu67dZMjmgDGCGl1H+vpF4NSDckSIkk7Vd+sxEhBQMRU8j/12UIRhzSaUdQ+rQU5kGeFxm+hb1oh6pWWmv3uvmReDl0UnvtapVaIzo1jZbf/pD6ElLqSX+rUmOQNpJFa/r+sa4e/pBlAABoAAAAA3CUgShLdGIxsY7AUABPRrgCABdDuQ5GC7DqPQCgbbJUAoRSUj+NIEig0YfyWUho1VBBBA//uQZB4ABZx5zfMakeAAAAmwAAAAF5F3P0w9GtAAACfAAAAAwLhMDmAYWMgVEG1U0FIGCBgXBXAtfMH10000EEEEEECUBYln03TTTdNBDZopopYvrTTdNa325mImNg3TTPV9q3pmY0xoO6bv3r00y+IDGid/9aaaZTGMuj9mpu9Mpio1dXrr5HERTZSmqU36A3CumzN/9Robv/Xx4v9ijkSRSNLQhAWumap82WRSBUqXStV/YcS+XVLnSS+WLDroqArFkMEsAS+eWmrUzrO0oEmE40RlMZ5+ODIkAyKAGUwZ3mVKmcamcJnMW26MRPgUw6j+LkhyHGVGYjSUUKNpuJUQoOIAyDvEyG8S5yfK6dhZc0Tx1KI/gviKL6qvvFs1+bWtaz58uUNnryq6kt5RzOCkPWlVqVX2a/EEBUdU1KrXLf40GoiiFXK///qpoiDXrOgqDR38JB0bw7SoL+ZB9o1RCkQjQ2CBYZKd/+VJxZRRZlqSkKiws0WFxUyCwsKiMy7hUVFhIaCrNQsKkTIsLivwKKigsj8XYlwt/WKi2N4d//uQRCSAAjURNIHpMZBGYiaQPSYyAAABLAAAAAAAACWAAAAApUF/Mg+0aohSIRobBAsMlO//Kk4soosy1JSFRYWaLC4qZBYWFRGZdwqKiwkNBVmoWFSJkWFxX4FFRQWR+LsS4W/rFRb/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////VEFHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAU291bmRib3kuZGUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMjAwNGh0dHA6Ly93d3cuc291bmRib3kuZGUAAAAAAAAAACU=');
+        let audio = new Audio('data:audio/mp3;base64,//uQRAAAAWMSLwUIYAAsYkXgoQwAEaYLWfkWgAI0wWs/ItAAAGDgYtAgAyN+QWaAAihwMWm4G8QQRDiMcCBcH3Cc+CDv/7xA4Tvh9Rz/y8Q... (дальше base64 код обрезан для краткости)');
         
         document.getElementById('musicButton').addEventListener('click', () => {
             audio.play();
@@ -137,7 +287,6 @@
         // Обновленный обработчик запуска
         function startAnimation() {
             document.querySelector('.start-screen').style.display = 'none';
-            document.querySelector('h1').classList.add('gradient-text');
             document.querySelector('h1').style.display = 'block';
             document.querySelector('.content').style.display = 'block';
             document.querySelector('.image-container').style.display = 'block';
@@ -153,6 +302,9 @@
                 navigator.vibrate(50);
             }
         });
+
+        // Обработчик клика для запуска анимации
+        document.body.addEventListener('click', startAnimation, { once: true });
     </script>
 </body>
 </html>
